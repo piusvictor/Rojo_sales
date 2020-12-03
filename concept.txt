@@ -1,0 +1,25 @@
+
+//Detecting if stepUp button or Step down button has clicked
+$(".counter").change(function () {
+   alert($(this).val());      
+})
+
+$(".counter").change(function () {
+    if ($(this).data('old-value') < $(this).val()) {
+        alert('Alert up');
+    } else {
+        alert('Alert dowm');
+    }
+    $(this).data('old-value', $(this).val());
+})
+
+
+
+
+<select class="js-example-basic-single" name="state">
+  <option value="AL">Alabama</option>
+    ...
+  <option value="WY">Wyoming</option>
+</select>
+
+SELECT CONCAT('P-',LPAD(id,4,'0')) AS Id_number FROM `zerofill_table`

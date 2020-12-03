@@ -1,0 +1,194 @@
+*{
+    font-family: "Times New Roman", Times, serif;
+}
+body{
+    background-color: #0F5766;
+}
+.wrapper{
+    display:flex;
+    justify-content: center;
+    
+    
+}
+.container{
+    width: 850px;
+    border:2px solid black;
+    margin-top: 40px;
+    max-height: 83vh;
+    min-height:83vh;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    margin-left: 10px;
+    margin-right:10px;
+    background-color: white;
+
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+}
+
+.proforma-heading{
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: rgb(221, 20, 20);
+}
+
+
+.from table tr th , .invoice-no table tr th , .client-details table tr th{    
+    /*border-collapse: collapse;*/
+    border-width: 1px;
+    border-style: solid;
+    
+  }
+
+  .from table tr td,.invoice-no table tr td, .client-details table tr td{    
+    /*border-collapse: collapse;*/
+    border-width: 1px;
+    border-style: solid;
+    
+  }
+
+  .custom-table-border{
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  /* .product-details table tr:nth-child(1){    
+    border-width: 2px;
+    border-style: solid;
+  } */
+
+  .product-details table thead tr th{    
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  table{    
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+
+  .table-body-padding{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+.product-details>table{    
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+
+  .table-padding{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:12px;    
+    text-align: left;
+    
+}
+
+
+.table-padding1{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size:12px;
+    font-weight: bold;
+    text-align: left;
+    
+}
+
+.table-footer-font{
+    font-size:12px;
+    font-weight:400;
+}
+
+.product-table-font{
+    font-size:12px;
+    /*font-weight:bold;*/
+}
+.company-details{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.client-details{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.payment-details{
+    margin-top: 20px;
+   /* margin-bottom: 70px;*/
+    font-size:12px;
+    color:#0F5766;
+}
+
+.sign-stamp{
+    display:flex;
+    margin-top: 37px;
+
+}
+.sign ,.stamp{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.sign{
+    margin-right:135px;
+}
+
+.delivery-issued{
+    font-size:12px;
+    font-weight:bold;
+    margin-right:50px;
+}
+
+
+
+a.btn:hover{
+background-color: rgb(11, 11, 90);
+}
+
+a.btn-back:hover{
+    background-color: rgb(11, 11, 90);
+    }
+
+.btn{
+border-radius: 20px;
+text-decoration: none;
+position:fixed;
+bottom:67%;
+right:7%;
+padding:10px;
+border:2.5px solid whitesmoke;
+}
+
+.btn-back{
+    border-radius: 20px;
+    text-decoration: none;
+    position:fixed;
+    bottom:50%;
+    right:7%;
+    padding:10px;
+    border:2px solid whitesmoke;
+    }
+
+.btn-primary{
+background-color: rgba(29, 61, 240, 0.849);
+color:white;
+}
+
+.menu-bottom-space{
+    clear:both;
+    margin-top:10%;
+}

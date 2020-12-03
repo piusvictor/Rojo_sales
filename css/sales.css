@@ -1,0 +1,15 @@
+.preloader{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.nav-link {
+    color: rgb(185, 39, 39) !important;
+    }
+
+    .menu-bottom-space{
+        clear:both;
+        margin-top:10%;
+    }

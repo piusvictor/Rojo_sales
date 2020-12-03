@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/sales.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/simple.money.format.js"></script>
+    <title>Rojo Africa sales system</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <h5 class="text-danger">
+                    Please select the item[s] to sale
+                </h5>
+                <select name="" id="product-select" class="form-control" style="width:90%">
+                    <option value="" >Please select the item[s] to sale</option>
+                    <option value="1:galaxy(270 * 65 * 3)cm:200:5">galaxy(270 * 65 * 3)cm, remain:5</option>
+                    <option value="2:galaxy(280 * 67 * 4)cm:200:6">galaxy(280 * 67 * 4)cm, remain:6</option>
+                </select>
+            </div>
+
+            <div class="col-md-8">
+                
+                <table class="" border="1">
+                    <thead>
+                      <tr align="center">
+                        <th width="5%">S/N</th>
+                        <th width="25%">Item Description</th>
+                        <th width="15%">Unit price</th>
+                        <th width="5%">Quantity</th>
+                        <th width="20%">Total</th>
+                        <th width="20%">Discount</th>
+                        <th width="10%">Remove</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr id="td-empty">
+                        <td  colspan="7" align="center">No Item Added</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr align="center" border="1">
+                        <td colspan="3" style="border-left-style:hidden;border-bottom-style:hidden;"></td>
+                        <td width="20%"><b>Sub-Total</b></td>        
+
+                        <td><b><span id="grand-total">0</span></b></td>
+                    </tr>
+
+                    <tr align="center" border="1">
+                      <td colspan="3" style="border-left-style:hidden;border-bottom-style:hidden;"></td>
+                      <td width="20%"><b>Discount</b></td>        
+
+                      <td><b><span id="grand-total">0</span></b></td>
+                  </tr>
+
+                  <tr align="center" border="1">
+                    <td colspan="3" style="border-left-style:hidden;border-bottom-style:hidden;"></td>
+                    <td width="20%"><b>VAT</b></td>        
+
+                    <td><b><span id="grand-total">0</span></b></td>
+                </tr>
+
+                <tr align="center" border="1">
+                  <td colspan="3" style="border-left-style:hidden;border-bottom-style:hidden;"></td>
+                  <td width="20%"><b>Total</b></td>        
+
+                  <td><b><span id="grand-total">0</span></b></td>
+              </tr>
+                    </tfoot>
+                  </table>
+                  <div align="right">
+                    <a href="#" class="btn btn-primary make-sell">make sale</a>
+                  </div>
+            </div>
+        </div>
+    
+    </div>
+
+    <script src="js/sales.js"></script>
+  </body>
+</html>

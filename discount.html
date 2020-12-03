@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Discount Program</title>
+  </head>
+  <style>
+    label {
+      width: 100px;
+      display: inline-block;
+    }
+  </style>
+  <body>
+    <div>
+      <label for="">item 1:</label
+      ><input
+        type="number"
+        min="0"
+        data-oldvalue="0"
+        max="100"
+        name="1"
+      /><br />
+      <label for="">item 2:</label
+      ><input
+        type="number"
+        min="0"
+        data-oldvalue="0"
+        max="100"
+        name="2"
+      /><br />
+      <label for="">item 3:</label
+      ><input
+        type="number"
+        min="0"
+        data-oldvalue="0"
+        max="100"
+        name="3"
+      /><br />
+      <label for="">item 4:</label
+      ><input
+        type="number"
+        min="0"
+        data-oldvalue="0"
+        max="100"
+        name="4"
+      /><br />
+      <label for=""><b>Discount:</b></label
+      ><input type="text" id="Discount" name="Discount" value="100" /><br />
+      <label for=""><b>Total:</b></label
+      ><input type="text" id="Total" name="Total" value="100" />
+    </div>
+
+    <!-- <th width="5%">S/N</th>
+    <th width="25%">Item Description</th>
+    <th width="15%">Unit </th>
+    <th width="5%">Quantity</th>
+    <th width="15%">Rate</th>                        
+    <th width="20%">Total</th>
+    <th width="10%">Disc %</th>
+    <th width="10%">Remove</th> -->
+
+    <script>
+
+        var grand_total = 0;
+        var oldvalue = 0;
+        var currentvalue = 0;
+      $(document).ready(function () {        
+
+        $("input[type=number]").change(function (event) {
+            discount($(this)); 
+        });
+      });
+
+      const discount=(self)=> {
+        oldvalue = self.data("oldvalue");
+        currentvalue = parseFloat(self.val());
+        currentvalue <= self.attr("max")
+          ? ((grand_total =
+              parseFloat($("#Total").val()) +
+              parseFloat(self.data("oldvalue")) -
+              parseFloat(self.val())),
+            $("#Total").val(grand_total),
+            self.data("oldvalue", self.val()))
+          : (alert(
+              `Please input the number should not exceed the ${self.attr(
+                "max"
+              )}items`
+            ),
+            self.val(self.data("oldvalue")));
+
+        console.log(grand_total);
+      };
+    </script>
+  </body>
+</html>
