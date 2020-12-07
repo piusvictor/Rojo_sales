@@ -254,7 +254,7 @@ $(".make-sell").click(function () {
         console.log(data);
         sale_no = data.last_id;
         $(".print-link").html(
-          `<a href="http://localhost/Rojo_sales/purchaseOrder.php?id=${sale_no}" class="btn btn-primary" target="_blank" rel="noreferrer">Print Invoice</a><a href="http://localhost/Rojo_sales/deliveryOrder.php?id=${sale_no}" target="_blank" rel="noreferrer" class="btn btn-success ml-3">Print delivery order</a>`
+          `<a href="http://localhost/Rojo_sales/purchaseOrder.php?id=${sale_no}" class="btn btn-success" target="_blank" rel="noreferrer">Print Order</a>`
         );
       },
 

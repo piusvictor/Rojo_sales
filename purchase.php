@@ -23,7 +23,7 @@
   <body>
   <?php include('navbar.php')?>
 
-    <div class="container-fluid  pl-5 pr-5" style="clear:both;margin-top:10%">
+    <div class="container-fluid  pl-5 pr-5 pb-5" style="clear:both;margin-top:10%">
       <div class="row">
         <div class="col-md-4 form-group border-right">
           <h5 class="text-danger">Please select the item[s] to sale</h5>
@@ -189,7 +189,7 @@
           </div>
           <div align="right">
             <a href="#" class="btn btn-primary make-sell"
-              >generate sales Invoice</a
+              >generate PO</a
             >
           </div>
         </div>

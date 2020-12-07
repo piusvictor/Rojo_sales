@@ -1,3 +1,18 @@
+<?php
+/// CONNECTION CODES GO HERE
+include('dbConnect.php');
+$sql = "SELECT * FROM `products` INNER JOIN products_store ON products.id=products_store.product_id";
+
+$snglQuery = $conn->query($sql);
+//Fetch row
+//$row = $snglQuery->fetch_assoc();
+
+// Fetch all
+$rows=$snglQuery-> fetch_all(MYSQLI_ASSOC);
+
+$conn -> close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +48,7 @@
 
     <a href="http://localhost/Rojo_sales/print_product_stock.php" class="btn btn-outline-success btn-sm mb-4"  >Print product stock</a>
     </div>
-        <table class="table table-bordered" id="my-table" style="width:100%">
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>S/N</th>
@@ -45,13 +60,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td colspan="5" align="center">No Product Added </td>            
-                </tr>
+            <?php foreach ($rows as $key => $row) {?>
+                  <tr>
+                      <td><?=$key + 1?></td>
+                      <td><?=$row['product_name']?></td>
+                      <td><?=$row['unit']?></td>
+                      <td><?=$row['quantity']?></td>
+                      <td><?=$row['rate']?></td>
+                      <td>
+                                <a class="btn btn-primary btn-sm  edit-button" href="#" data-id="<?=$row['id']?>" >Edit</a>
+                                <a class="btn btn-danger btn-sm delete-btn" href="#" data-id="<?=$row['id']?>">Delete</a>
+                                <a class="btn btn-success btn-sm  stock-button" href="#" data-id="<?=$row['id']?>" >Update Stock</a>
+                     </td> 
+                  </tr>
+             <?php }?>
             </tbody>
-            <tfoot>
+            <!-- <tfoot>
         
-            </tfoot>
+            </tfoot> -->
         </table>
 
     </div>
@@ -213,8 +239,13 @@
 
 
     <script>
+
+
+
+       
+
         $(document).ready(function(){           
-            getProducts();
+           // getProducts();
            // $('#my-table').DataTable();
             //A call to add product modal
 
@@ -276,6 +307,11 @@
             //
 
         });
+
+
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
 
 
         //Retrieve Products
