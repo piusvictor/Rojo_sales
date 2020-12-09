@@ -83,6 +83,7 @@
           <table class="table table-bordered">
             <thead>
               <tr align="center">
+              <!-- <th width="5%">id</th> -->
                 <th width="5%">S/N</th>
                 <th width="25%">Item Description</th>
                 <th width="15%">Unit</th>
@@ -190,7 +191,7 @@
 
 
             <a href="#" class="btn btn-success ml-4 make-sell"
-              >generate sales Order</a
+              >generate sales Invoice</a
             >
           </div>
         </div>

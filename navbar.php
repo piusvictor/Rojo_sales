@@ -1,4 +1,9 @@
-<?php session_start();?>
+<?php session_start();
+if(!isset($_SESSION['user'])){
+  echo '<script> window.location.assign("http://localhost/Rojo_sales/login_page.php")</script>';
+  exit();
+}
+?>
 <nav class="navbar fixed-top navbar-expand-sm bg-light navbar-light shadow-sm">
   <!-- Brand -->
   <a class="navbar-brand" href="#"><img src="./images/rojo_logo.png" alt="rojo_logo" width="120px" height="60px"></a>
@@ -9,6 +14,9 @@
   <?php if($_SESSION['role']==="admin"){?>
     <li class="nav-item">
       <a class="nav-link" href="http://localhost/rojo_sales/view_products.php">Stock Products</a>
+    </li> 
+    <li class="nav-item">
+      <a class="nav-link" href="http://localhost/rojo_sales/view_units.php">Add Product Unit</a>
     </li>   
     <?php }?>
 <!-- Dropdown -->

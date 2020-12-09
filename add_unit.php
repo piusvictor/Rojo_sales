@@ -12,11 +12,11 @@ if(isset($_POST['details'])){
    //var_export($product_order);
    //echo json_encode($product);
    //echo $product['product_name'];
-  //exit();
+ // exit();
 
-    $product_name=$product['product_name'];    
+   // $product_name=$product['product_name'];    
     $product_unit=$product['unit'];
-    $product_rate=$product['rate'];
+    //$product_rate=$product['rate'];
     
     $action=$product['action'];
 
@@ -24,7 +24,7 @@ if(isset($_POST['details'])){
         {
 
                 
-    $sql = "INSERT INTO `products` (`id`, `product_name`,  `unit`,  `rate`, `created_At`) VALUES (NULL, '$product_name', '$product_unit', '$product_rate', CURRENT_TIMESTAMP)";
+    $sql = "INSERT INTO `product_unit` (`id`, `name`) VALUES (NULL,'$product_unit')";
 
     try{
         $status=$conn->query($sql);
@@ -32,10 +32,7 @@ if(isset($_POST['details'])){
         $last_id=$conn->insert_id;
 
 
-      if($status){
-        $quantity=$product['qty'];
-        $sql = "INSERT INTO `products_store` (`id`, `product_id`,  `quantity`,`created_At`) VALUES (NULL, '$last_id', '$quantity', CURRENT_TIMESTAMP)";
-        $conn->query($sql);
+      if($status){       
         echo json_encode(['message'=>'successfully sales','status_code'=>$status,'last_id'=>$last_id]);
       }
 
@@ -52,26 +49,16 @@ if(isset($_POST['details'])){
         }
 
 
-        if($action==="update"){
-    $product= (array)json_decode($_POST['details']);
-   //var_export($product_order);
-   //echo json_encode($product);
-   //echo $product['product_name'];
-  //exit();
+        if($action==="update"){   
 
   $product= (array)json_decode($_POST['details']);
-  //var_export($product_order);
-  //echo json_encode($product);
-  //echo $product['product_name'];
- //exit();
+  
 
-   $product_name=$product['product_name'];    
    $product_unit=$product['unit'];
-   $product_rate=$product['rate'];
-    //$action=$product['action'];
+   
     $product_id=$product['product_id'];
 
-    $sql = "UPDATE `products` set product_name='$product_name',unit='$product_unit',rate='$product_rate' where id=$product_id";
+    $sql = "UPDATE `product_unit` set name='$product_unit' where id=$product_id";
 
     try{
         $status=$conn->query($sql);
@@ -94,9 +81,9 @@ if(isset($_POST['action'])){
 
 if($_POST['action']==="delete"){
     $id=$_POST['id'];
-    $sql="Delete from products where id=$id";
+    $sql="Delete from product_unit where id=$id";
     $status=$conn->query($sql);
-    echo json_encode(['message'=>'Updated successfully','status_code'=>$status]);
+    echo json_encode(['message'=>'Deleted successfully','status_code'=>$status]);
 }
 
 

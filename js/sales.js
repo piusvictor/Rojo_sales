@@ -43,6 +43,9 @@ function addProduct(selected_value) {
   <!--<td style="display:none" class="position">${
     product_cart.length - 1
   }</td>-->
+
+
+  <td class="product-id" style="display:none">${selected_values[0]}</td>
   <td >${sn}</td>
   <td class="product-detail">${selected_values[1]}</td>
   <td class="unit">${selected_values[2]}</td>
@@ -154,6 +157,7 @@ function getTotalPrice() {
 }
 
 $(".make-sell").click(function () {
+  var item_id=[];
   var item_description = [];
   var item_unit = [];
   var quantity = [];
@@ -198,6 +202,12 @@ $(".make-sell").click(function () {
   amount_in_words = document.querySelector("#amount-in-words").value;
 
   //get classList for data elements
+
+  var product_id = document.querySelectorAll(".product-id");
+  Array.from(product_id).forEach((detail) =>
+    item_id.push(detail.innerText)
+  );
+
   var product_detail = document.querySelectorAll(".product-detail");
   Array.from(product_detail).forEach((detail) =>
     item_description.push(detail.innerText)
@@ -226,6 +236,7 @@ $(".make-sell").click(function () {
       location: client_location.value,
       phone: client_phone.value,
     },
+    item_id:item_id,
     item_details: item_description,
     item_unit: item_unit,
     quantity: quantity,
@@ -256,6 +267,8 @@ $(".make-sell").click(function () {
         $(".print-link").html(
           `<a href="http://localhost/Rojo_sales/salesInvoice.php?id=${sale_no}" class="btn btn-primary" target="_blank" rel="noreferrer">Print Invoice</a><a href="http://localhost/Rojo_sales/deliveryOrder.php?id=${sale_no}" target="_blank" rel="noreferrer" class="btn btn-success ml-3">Print delivery order</a>`
         );
+
+        getProducts();
       },
 
       error: function (xhr, status, error) {
@@ -413,7 +426,7 @@ function getProducts() {
       var products = data;
 
       products.forEach((product) => {
-        product_options += `<option value="${product.id}:${product.product_name}:${product.unit}:${product.quantity}:${product.rate}" class="">${product.id}:${product.product_name}:${product.unit}:remain-${product.quantity}:${product.rate}</option>`;
+        product_options += `<option value="${product.product_id}:${product.product_name}:${product.unit}:${product.quantity}:${product.rate}" class="">${product.id}:${product.product_name}:${product.unit}:remain-${product.quantity}:${product.rate}</option>`;
       });
 
       $("#product-select").html(product_options);

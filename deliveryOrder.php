@@ -48,11 +48,11 @@
                     <thead>
                       <tr align="center" class="">
                         <th width="5%" class=""  >No.</th>
-                        <th width="25%" class="" >Item Description</th>
-                        <th width="10%" class="" >Unit</th>
-                        <th width="15%" class="" >Qty Ordered</th>
-                        <th width="10%" class="" >Qty Delivered</th>                        
-                        <th  width="20%" class="" >Comment</th>
+                        <th width="29%" class="" >Item Description</th>
+                        <th width="9%" class="" >Unit</th>
+                        <th width="8%" class="" >Qty Ordered</th>
+                        <th width="8%" class="" >Qty Delivered</th>                        
+                        <th  width="26%" class="" >Comment</th>
                         
                       </tr>
                     </thead>

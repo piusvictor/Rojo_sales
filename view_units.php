@@ -1,7 +1,7 @@
 <?php
 /// CONNECTION CODES GO HERE
 include('dbConnect.php');
-$sql = "SELECT * FROM `products` INNER JOIN products_store ON products.id=products_store.product_id";
+$sql = "SELECT * FROM `product_unit`";
 
 $snglQuery = $conn->query($sql);
 //Fetch row
@@ -9,18 +9,6 @@ $snglQuery = $conn->query($sql);
 
 // Fetch all
 $rows=$snglQuery-> fetch_all(MYSQLI_ASSOC);
-
-
-
-
-$sql1 = "SELECT * FROM `product_unit` ";
-
-$snglQuery1 = $conn->query($sql1);
-//Fetch row
-//$row = $snglQuery->fetch_assoc();
-
-// Fetch all
-$units=$snglQuery1-> fetch_all(MYSQLI_ASSOC);
 
 $conn -> close();
 ?>
@@ -56,18 +44,14 @@ $conn -> close();
 <?php include('navbar.php')?>
     <div class="container" style="clear:both;margin-top:10%">
     <div>
-    <a href="#" class="btn btn-info btn-sm mb-4 mr-2" data-toggle="modal" data-target="#add-product-modal">Add New Product</a>
-
-    <a href="http://localhost/Rojo_sales/print_product_stock.php" class="btn btn-outline-success btn-sm mb-4"  >Print product stock</a>
+    <a href="#" class="btn btn-info btn-sm mb-4 mr-2" data-toggle="modal" data-target="#add-product-modal">Add New Unit</a>    
     </div>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
             <thead>
                 <tr>
                     <th>S/N</th>
-                    <th>Product_name</th>
-                    <th>Unit</th>
-                    <th>Available</th>
-                    <th>Rate</th>
+                    <th>Unit_name</th>            
+                    
                     <th width="25%">Action</th>
                 </tr>
             </thead>
@@ -75,14 +59,11 @@ $conn -> close();
             <?php foreach ($rows as $key => $row) {?>
                   <tr>
                       <td><?=$key + 1?></td>
-                      <td><?=$row['product_name']?></td>
-                      <td><?=$row['unit']?></td>
-                      <td><?=$row['quantity']?></td>
-                      <td><?=$row['rate']?></td>
+                      <td><?=$row['name']?></td>
+                      
                       <td>
-                                <a class="btn btn-primary btn-sm  edit-button" href="#" data-id="<?=$row['product_id']?>" >Edit</a>
-                                <a class="btn btn-danger btn-sm delete-btn" href="#" data-id="<?=$row['product_id']?>">Delete</a>
-                                <a class="btn btn-success btn-sm  stock-button" href="#" data-id="<?=$row['product_id']?>" >Update Stock</a>
+                                <a class="btn btn-primary btn-sm  edit-button" href="#" data-id="<?=$row['id']?>" >Edit</a>
+                                <a class="btn btn-danger btn-sm delete-btn" href="#" data-id="<?=$row['id']?>">Delete</a>                               
                      </td> 
                   </tr>
              <?php }?>
@@ -103,38 +84,16 @@ $conn -> close();
 
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Add Product</h4>
+            <h4 class="modal-title">Add Unit</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body form-group">
             
-            <form action="" method="get">
-            
-            <label for="">Product Name:</label>
-            <input type="text" name="product-name" id="product-name" placeholder="Product Name here.." class="form-control">
-
+            <form action="" method="get">                
             <label for="">Product Unit:</label>
-            <!-- <input type="text" name="product-unit" id="product-unit" placeholder="Product Unit here.." class="form-control"> -->
-            <select name="product-unit" id="product-unit" class="form-control">          
-             
-               <?php foreach ($units as $key => $unit) { ?>
-
-                <option value="<?=$unit['name']?>"><?=$unit['name']?></option>  
-
-                <?php }?> 
-            
-            
-                        
-                   
-            </select>
-
-            <label for="">Product Rate:</label>
-            <input type="number" name="product-rate" id="product-rate" placeholder="Product Rate here.." class="form-control">
-
-            <label for="">Quantity:</label>
-            <input type="number" name="product-qty" id="product-qty" placeholder="Product qty.." value="0" class="form-control">
+            <input type="text" name="product-unit" id="product-unit" placeholder="Product Unit here.." class="form-control">          
             
             </form>
 
@@ -160,7 +119,7 @@ $conn -> close();
 
         <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Update Product Stock</h4>
+            <h4 class="modal-title">Update Product Unit</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
@@ -169,15 +128,9 @@ $conn -> close();
             
             <form action="" method="get">
             
-            <label for="">Product Name:</label>
-            <input type="text" name="stock-name" id="stock-name"  class="form-control" readonly>           
-
-            <label for="">Available Products:</label>
-            <input type="number" name="stock-available" id="stock-available"  class="form-control" readonly>
-
-            <label for="">Quantity to update:</label>
-            <input type="number" name="stock-qty" id="stock-qty"  value="1" class="form-control">
-
+            <label for="">Product Unit:</label>
+            <input type="text" name="stock-name" id="stock-name"  class="form-control" readonly>        
+           
             <input type="hidden" name="stock-id" id="stock-id">
             
             </form>
@@ -209,13 +162,13 @@ $conn -> close();
 
 
  <!-- Edit Product Modal -->
- <div class="modal" id="edit-product">
+ <div class="modal" id="edit-unit">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Edit Product</h4>
+        <h4 class="modal-title">Edit Unit</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -226,28 +179,8 @@ $conn -> close();
         <label for="">Id no:</label>
         <input type="text" name="product-id" id="edit-product-id"  class="form-control" style="width:20%" readonly>
 
-        <label for="">Product Name:</label>
-        <input type="text" name="product-name" id="edit-product-name" placeholder="Product Name here.." class="form-control">
-
         <label for="">Product Unit:</label>
-        <!-- <input type="text" name="product-unit" id="edit-product-unit" placeholder="Product Unit here.." class="form-control"> -->
-
-        <select name="edit-product-unit" id="edit-product-unit" class="form-control">          
-             
-             <?php foreach ($units as $key => $unit) { ?>
-
-              <option value="<?=$unit['name']?>"><?=$unit['name']?></option>  
-
-              <?php }?> 
-          
-          
-                      
-                 
-          </select>
-       
-
-        <label for="">Product Rate:</label>
-        <input type="number" name="product-rate" id="edit-product-rate" placeholder="Product Rate here.." class="form-control">
+        <input type="text" name="product-unit" id="edit-product-unit" placeholder="Product Unit here.." class="form-control">
         </form>
       </div>
 
@@ -315,20 +248,18 @@ $conn -> close();
             //
 
 
-            $('#add-product').click(function(){                
-                var product_name=$('#product-name').val();
+            $('#add-product').click(function(){      
+                
                 var product_unit=$('#product-unit').val();
-                var product_rate=$('#product-rate').val();
-                var product_qty=$('#product-qty').val();
-                addProduct(product_name,product_unit,product_rate,product_qty);
+                
+                addProduct(product_unit);
             });
 
             $('#update').click(function(){     
-                var product_id=$('#edit-product-id').val();           
-                var product_name=$('#edit-product-name').val();
-                var product_unit=$('#edit-product-unit').val();
-                var product_rate=$('#edit-product-rate').val();
-                updateProduct(product_name,product_unit,product_rate,product_id);
+                var unit_id=$('#edit-product-id').val();           
+                var product_name=$('#edit-product-unit').val();
+                
+                updateProduct(product_name,unit_id);
             });
 
             
@@ -352,52 +283,11 @@ $conn -> close();
         } );
 
 
-        //Retrieve Products
-        function getProducts(){
-            var output="";
-            $.ajax({
-                url:"retrieve_products.php",
-                method:"GET",
-                dataType:"json",
-                success:function(data){
-                    console.log(data);
-
-
-                    data.forEach((item,index)=>{
-                        output+=`
-                            <tr>
-                                <td>${index+1}</td> 
-                                <td>${item.product_name}</td>
-                                <td>${item.unit}</td>
-                                <td>${item.quantity}</td>
-                                <td>${item.rate}</td>                                                           
-                                <td>
-                                <a class="btn btn-primary btn-sm  edit-button" href="#" data-id="${item.product_id}" >Edit</a>
-                                <a class="btn btn-danger btn-sm delete-btn" href="#" data-id="${item.product_id}">Delete</a>
-                                <a class="btn btn-success btn-sm  stock-button" href="#" data-id="${item.product_id}" >Update Stock</a>
-                                </td>                                                           
-                            </tr>                 
-                    
-                    `;
-                    });
-                   
-
-                    $('tbody').html(output);
-                },
-                error:function(xhr, status,error){
-
-                }
-            });//End Ajax
-        }
-
 
         //Add products
-        function addProduct(product_name,unit,rate,qty){
-            var product_details={
-                product_name:product_name,
-                unit:unit,
-                rate:rate,
-                qty:qty,
+        function addProduct(unit){
+            var product_details={                
+                unit:unit,                
                 action:"add"
             }
 
@@ -405,13 +295,13 @@ $conn -> close();
             //var details=product_details;
             
             $.ajax({
-                url:"add_product.php",
+                url:"add_unit.php",
                 method:"post",
                 data:{details:details},
                 //dataType:"json",
                 success:function(data){
                     console.log(data);
-                    window.location.assign("http://localhost/Rojo_sales/view_products.php");
+                    window.location.assign("http://localhost/Rojo_sales/view_units.php");
                 },
                 error:function(xhr,status,error){
                     console.log(xhr);
@@ -424,18 +314,16 @@ $conn -> close();
         function editProduct(id){            
             $.ajax({
 
-                url:"retrieve_products.php",
+                url:"retrieve_units.php",
                 method:"post",
                 data:{id:id,
                       action:"edit"},
                       dataType:"json",
                 success:function(data){
-                    console.log(data);
-                    $('#edit-product-id').val(data.id);
-                    $('#edit-product-name').val(data.product_name);
-                    $('#edit-product-unit').val(data.unit).change();
-                    $('#edit-product-rate').val(data.rate);
-                    $('#edit-product').modal('show');
+                    //console.log(data);
+                    $('#edit-product-id').val(data.id);                   
+                    $('#edit-product-unit').val(data.name);                   
+                    $('#edit-unit').modal('show');
                 },
                 error:function(xhr,status,error){
                     console.log(xhr);
@@ -502,27 +390,25 @@ $.ajax({
 
 
         //Update Products
-        function updateProduct(product_name,unit,rate,id){
+        function updateProduct(unit,id){
 
             var product_details={
-                product_id:id,
-                product_name:product_name,
-                unit:unit,
-                rate:rate,
+                product_id:id,                
+                unit:unit,                
                 action:"update"
-            }
+                        }
 
             var details=JSON.stringify(product_details);
 
             $.ajax({
 
-                url:"add_product.php",
+                url:"add_unit.php",
                 method:"post",
                 data:{details:details},
                 dataType:"json",
                 success:function(data){
                     console.log(data);
-                    window.location.assign("http://localhost/Rojo_sales/view_products.php");
+                   window.location.assign("http://localhost/Rojo_sales/view_units.php");
                 },
                 error:function(xhr,status,error){
                     console.log(xhr);
@@ -535,13 +421,13 @@ $.ajax({
         //Delete Product
         function deleteProduct(id){
             $.ajax({
-                url:"add_product.php",
+                url:"add_unit.php",
                 method:"post",
                 data:{id:id,action:"delete"},
                 dataType:"json",
                 success:function(data){
                     console.log(data);
-                    window.location.assign("http://localhost/Rojo_sales/view_products.php");
+                    window.location.assign("http://localhost/Rojo_sales/view_units.php");
                 },
                 error:function(xhr,status,error){
                     console.log(xhr);

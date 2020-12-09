@@ -12,8 +12,8 @@ if(isset($_POST['details'])){
     //echo json_encode(['message'=>'successfully processed']);
    $product_order= (array)json_decode($_POST['details']);
    //var_export($product_order);
-   //echo json_encode($product_order);
-   // exit();
+  // echo json_encode($product_order);
+    //exit();
 }
 
 // $a=$_REQUEST['sales_details'];
@@ -35,9 +35,21 @@ include('dbConnect.php');
 $customer_name=$product_order["client"]->name;
 $client_address=$product_order["client"]->address;
 $client_location=$product_order["client"]->location;
+$p_qty=$product_order["quantity"];
+$p_id=$product_order["item_id"];
+
+
+//print_r($p_id);
 
 //var_dump($customer_name->name);
 //exit();
+
+foreach ($product_order["item_details"] as $key => $value) {
+    $sql1 = "UPDATE `products_store` set quantity=quantity-$p_qty[$key] where product_id=$p_id[$key]";
+    $status1=$conn->query($sql1);
+}
+
+
 
 $product_order=serialize($product_order);
 

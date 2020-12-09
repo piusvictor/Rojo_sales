@@ -53,7 +53,9 @@
                 <tr>
                     <th>S/N</th>
                     <th>Sales No.</th>
-                    <th>Customer</th>                                        
+                    <th>Customer</th> 
+                    <th>Details</th> 
+                    <th>Discount</th>                                      
                     <th>Date</th>
                     <th>Total</th>
                     <th width="10%" class="action"><span align="center"><b>Action</b></span></th>
@@ -66,7 +68,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" style="border-style-left:none;border-style-bottom:none"></td>
+                    <td colspan="5" style="border-style-left:none;border-style-bottom:none"></td>
                     <td align="right"><b>Total sales</b></td>
                     <td align="right"><span class="font-weight-bold total-sales">0.00</span></td>
                     <td class="action"></td>
@@ -137,7 +139,9 @@
                             <tr>
                                 <td>${index+1}</td> 
                                 <td>${item.sale_invoice_no}</td>
-                                <td>${sales[index].client.name}</td>                                
+                                <td>${sales[index].client.name}</td>
+                                <td>${sales[index].item_details[0]}</td>
+                                <td align="right">${parseFloat(sales[index].discount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
                                 <td>${item.created_At}</td>
                                 <td align="right">${parseFloat(sales[index].discount_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>                                                      
                                 <td align='center' class="action">
@@ -189,6 +193,8 @@
                                 <td>${index+1}</td> 
                                 <td>${item.sale_invoice_no}</td>
                                 <td>${sales[index].client.name}</td>
+                                <td>${sales[index].item_details[0]}</td>
+                                <td align="right">${parseFloat(sales[index].discount).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
                                 <td>${item.created_At}</td>
                                 <td align="right">${parseFloat(sales[index].discount_total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>                                                     
                                 <td align='center' class="action">

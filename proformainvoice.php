@@ -71,7 +71,7 @@
                     <tr align="center"  class="table-footer-font">
                         <td colspan="4" style="border-left-style:hidden;border-bottom-style:hidden;border-width:1px" class="custom-table-border"></td>
                         <td width="10%"  style="border-width:1px;border-right-width:1px;padding-left:20px" align="left" class="custom-table-border"><b>VAT</b></td>
-                        <td   style="border-width:1px;padding-right:10px" align="right" class="custom-table-border"><b><span id="vat" >0</span></b></td>
+                        <td   style="border-width:1px;padding-right:10px" align="right" class="custom-table-border"><b><span id="vat" >0.00</span></b></td>
                     </tr>
                     <tr align="center"  class="table-footer-font">
                         <td colspan="4" style="border-left-style:hidden;border-bottom-style:visible;border-width:1px"></td>

@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if(!isset($_SESSION['user'])){
+  echo '<script> window.location.assign("http://localhost/Rojo_sales/login_page.php")</script>';
+  exit();
+}
 include('dbConnect.php');
 
 if(isset($_POST['details'])){   
